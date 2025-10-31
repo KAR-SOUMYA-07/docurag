@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuSensei - AI Document Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=5">
+</head>
+<body>
+    <div class="background-net"></div>
+    
+    <!-- Upload Loader Overlay -->
+    <div class="upload-loader-overlay" id="uploadLoader">
+        <div class="loader">
+            <div class="box box0"><div></div></div>
+            <div class="box box1"><div></div></div>
+            <div class="box box2"><div></div></div>
+            <div class="box box3"><div></div></div>
+            <div class="box box4"><div></div></div>
+            <div class="box box5"><div></div></div>
+            <div class="box box6"><div></div></div>
+            <div class="box box7"><div></div></div>
+            <div class="ground"><div></div></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>🎓 DocuSensei</h1>
+                <p class="subtitle">Your intelligent document assistant powered by AI. Upload documents and get instant answers.</p>
+            </div>
+
+            <button class="new-chat-btn" id="newChatBtn">
+                <span class="button_top">New Chat</span>
+            </button>
+
+            <div class="chat-history-section">
+                <h3>Previous Chats</h3>
+                <div id="chatHistory" class="chat-history">
+                    <!-- Previous chats will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>Signed in as <strong>User</strong></p>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-container">
+                <div id="chatMessages" class="chat-messages">
+                    <div class="welcome-message">
+                        <h2>👋 I'm DocuSensei—how can I help?</h2>
+                        <div class="suggestion-cards">
+                            <div class="suggestion-card">
+                                <span class="icon">�</span>
+                                <span>Summarize this document for me</span>
+                            </div>
+                            <div class="suggestion-card">
+                                <span class="icon">�</span>
+                                <span>Find specific information in my files</span>
+                            </div>
+                            <div class="suggestion-card">
+                                <span class="icon">�</span>
+                                <span>Extract key insights from documents</span>
+                            </div>
+                            <div class="suggestion-card">
+                                <span class="icon">❓</span>
+                                <span>Answer questions about my documents</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <div class="upload-section-inline">
+                        <input type="file" id="fileInput" accept=".txt,.pdf,.doc,.docx,.json,.csv" style="display: none;" onchange="if(this.files.length > 0) { handleFileUpload(this.files[0]); this.value = ''; }">
+                        <button type="button" class="upload-btn" id="uploadBtn" onclick="document.getElementById('fileInput').click();">
+                            <span class="icon">📎</span>
+                            <span>Attach file</span>
+                        </button>
+                        <div id="uploadedFiles" class="uploaded-files-inline"></div>
+                    </div>
+                    
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="chatInput" placeholder="Ask DocuSensei anything..." autocomplete="off" onkeypress="if(event.key==='Enter') sendMessage()">
+                        <button id="sendButton" class="send-button" onclick="sendMessage()">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 3L10 17M10 3L4 9M10 3L16 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="disclaimer">DocuSensei is an AI assistant. Responses may vary. Please verify important information.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}?v=8"></script>
+</body>
+</html>
